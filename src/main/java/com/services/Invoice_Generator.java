@@ -1,5 +1,7 @@
 package com.services;
 
+import com.entity.Ride;
+
 public class Invoice_Generator {
 	public static final double COSTPerKM = 10.0;
 	public static final double COSTPerMIN = 1.0;
@@ -10,6 +12,16 @@ public class Invoice_Generator {
 		double totalFare = distance * COSTPerKM + time * COSTPerMIN;
 		if (totalFare < 5) {
 			return MIN_FARE;
+		}
+		return totalFare;
+	}
+
+	public double calculateFareForMultiple_Ride(Ride[] rides) {
+		double totalFare = 0;
+		for(int i = 0; i < rides.length; i++) {
+			Ride ride = rides[i];
+			double fare = ride.getDistance() * COSTPerKM + ride.getTime() * COSTPerMIN;
+			totalFare += fare;
 		}
 		return totalFare;
 	}
