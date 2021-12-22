@@ -24,5 +24,10 @@ public class CabInvoiceData {
 		CabInvoiceData other = (CabInvoiceData) obj;
 		return totalNumberOfRide == other.totalNumberOfRide && Double.compare(other.totalFare, totalFare) == 0 && Double.compare(other.avgFarePerRide, avgFarePerRide) == 0;
 	}
+
+	public CabInvoiceData getInvoiceData() {
+		this.avgFarePerRide = this.totalFare / this.totalNumberOfRide;
+		return this;
+	}
 	
 }

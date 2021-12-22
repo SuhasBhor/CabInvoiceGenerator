@@ -8,6 +8,8 @@ import com.entity.CabInvoiceData;
 import com.entity.Ride;
 import com.services.Invoice_Generator;
 
+import junit.framework.Assert;
+
 public class Invoice_Test {
 	Invoice_Generator invoiceGenerator = new Invoice_Generator();
 	
@@ -39,5 +41,12 @@ public class Invoice_Test {
     	CabInvoiceData result = invoiceGenerator.calculateFareForMultiple_Ride(rides);
     	CabInvoiceData expectedData = new CabInvoiceData(2,27.0); 
         assertEquals(result,expectedData);
+    }
+    
+    @Test
+    public void givenUserID_ShouldReturnInvoiceData() {
+    	CabInvoiceData cabInvoiceData = invoiceGenerator.cabSummaryCalculate(3);
+    	CabInvoiceData expectedResult = new CabInvoiceData(2, 27.0);
+    	assertEquals(cabInvoiceData.getInvoiceData(),expectedResult.getInvoiceData());
     }
 }

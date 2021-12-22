@@ -1,5 +1,8 @@
 package com.services;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.entity.CabInvoiceData;
 import com.entity.Ride;
 
@@ -26,5 +29,26 @@ public class Invoice_Generator {
 			totalFare += fare;
 		}
 		return new CabInvoiceData(rides.length,totalFare);
+	}
+
+	public CabInvoiceData cabSummaryCalculate(int userId) {
+		Map<Integer, Ride[]> map = new HashMap<>();
+		Ride[] rides = {
+				new Ride(2.0,5),
+				new Ride(0.1,1)
+		};
+		Ride[] rides1 = {
+				new Ride(2.0,5),
+				new Ride(0.1,1)
+		};
+		map.put(3, rides);
+		map.put(1, rides1);
+		for(Map.Entry<Integer, Ride[]> entry : map.entrySet()) {
+			if(userId == entry.getKey()) {
+				Ride[] data = entry.getValue();
+				return calculateFareForMultiple_Ride(data);
+			}
+		}
+		return null;
 	}
 }
