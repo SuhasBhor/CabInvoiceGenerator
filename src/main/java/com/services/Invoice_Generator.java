@@ -1,5 +1,6 @@
 package com.services;
 
+import com.entity.CabInvoiceData;
 import com.entity.Ride;
 
 public class Invoice_Generator {
@@ -15,14 +16,15 @@ public class Invoice_Generator {
 		}
 		return totalFare;
 	}
-
-	public double calculateFareForMultiple_Ride(Ride[] rides) {
+	
+	//method to check the multiple ride fare
+	public CabInvoiceData calculateFareForMultiple_Ride(Ride[] rides) {
 		double totalFare = 0;
 		for(int i = 0; i < rides.length; i++) {
 			Ride ride = rides[i];
 			double fare = ride.getDistance() * COSTPerKM + ride.getTime() * COSTPerMIN;
 			totalFare += fare;
 		}
-		return totalFare;
+		return new CabInvoiceData(rides.length,totalFare);
 	}
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.entity.CabInvoiceData;
 import com.entity.Ride;
 import com.services.Invoice_Generator;
 
@@ -35,7 +36,8 @@ public class Invoice_Test {
     		new Ride(2.0,5),
     		new Ride(0.1,1)
     	};
-    	double result = invoiceGenerator.calculateFareForMultiple_Ride(rides);
-        assertEquals(27.0,result,0.0);
+    	CabInvoiceData result = invoiceGenerator.calculateFareForMultiple_Ride(rides);
+    	CabInvoiceData expectedData = new CabInvoiceData(2,27.0); 
+        assertEquals(result,expectedData);
     }
 }
